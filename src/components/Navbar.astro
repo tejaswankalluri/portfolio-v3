@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import HambergerMenuIcon from "../assets/icons/hamberger.svg";
+---
+
+<nav class="container mx-auto py-8">
+  <div class="flex justify-between items-center">
+    <a href=""
+      ><h1 class="sm:text-xl md:text-2xl font-bold font-lexend">Tejaswan</h1></a
+    >
+    <ul class="hidden md:flex gap-5 font-medium">
+      <li>Work</li>
+      <li>Project</li>
+      <li>Contact</li>
+      <li>Blog</li>
+    </ul>
+    <div class="md:hidden">
+      <a href="">
+        <Image src={HambergerMenuIcon} alt="Menu" />
+      </a>
+    </div>
+  </div>
+</nav>
