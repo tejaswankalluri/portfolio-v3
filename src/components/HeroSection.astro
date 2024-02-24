@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import HeroImg from "../assets/images/hero.jpg";
+import Button from "./Button.astro";
 ---
 
 <section class="container mx-auto min-h-screen flex items-center">
@@ -9,11 +10,11 @@ import HeroImg from "../assets/images/hero.jpg";
   >
     <div class="flex flex-col gap-8 md:w-1/2">
       <div
-        class="flex flex-col gap-2 font-medium text-center md:text-left md:mt-10"
+        class="flex flex-col gap-3 font-medium text-center md:text-left md:mt-10"
       >
         <h1 class="text-3xl md:text-5xl">Hi 👋</h1>
         <h1 class="text-3xl md:text-5xl">
-          I'm <span class="font-bold">Tejaswan</span>
+          I'm <span class="font-bold underlineText">Tejaswan</span>
         </h1>
       </div>
       <p class="text-sm text-center md:text-left md:text-base">
@@ -21,6 +22,12 @@ import HeroImg from "../assets/images/hero.jpg";
         web and mobile applications. I have a passion for creating innovative
         solutions that solve real-world problems and enhance user experience.
       </p>
+      <div class="mx-auto md:mx-0">
+        <Button
+          title="Resume"
+          href="https://drive.google.com/file/d/1IhdAOP6xTkaWlcApjwj7baC_byQ2Ep0L/view?usp=sharing"
+        />
+      </div>
     </div>
     <div>
       <Image
@@ -33,3 +40,13 @@ import HeroImg from "../assets/images/hero.jpg";
     </div>
   </div>
 </section>
+<style>
+  .underlineText {
+    display: inline-block;
+    background-image: url("underline.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    padding-bottom: 5px;
+  }
+</style>

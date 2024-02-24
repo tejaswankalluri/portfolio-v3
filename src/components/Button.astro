@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+import arrowImg from "../assets/icons/arrow.svg";
+interface Props {
+  title: string;
+  href: string;
+}
+const { title, href } = Astro.props;
+---
+
+<a href={href}>
+  <button
+    class="bg-tuatara-900 flex gap-2 py-3 px-4 items-center justify-center rounded-lg border-tuatara-400 border"
+  >
+    <p class="text-sm md:text-base">{title}</p>
+    <Image src={arrowImg} alt={"arrow img"} width={12} />
+  </button>
+</a>
