@@ -1,0 +1,14 @@
+---
+interface Props {
+  icon: string;
+  text: string;
+}
+const { icon, text } = Astro.props;
+---
+
+<div
+  class="bg-tuatara-900 flex gap-2 py-2 px-4 items-center justify-center rounded-lg border-tuatara-400 border"
+>
+  <i class={icon}></i>
+  <p class="text-sm md:text-base">{text}</p>
+</div>

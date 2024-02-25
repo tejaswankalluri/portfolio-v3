@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+import ArrowLargeImg from "../assets/icons/arrowLarge.svg";
+interface Props {
+  title: string;
+  githubLink?: string;
+  liveLink?: string;
+}
+const { title, githubLink, liveLink } = Astro.props;
+---
+
+<div
+  class="bg-tuatara-900 rounded-md px-7 py-5 flex items-center border border-tuatara-400 justify-between"
+>
+  <div class="flex flex-col gap-5">
+    <h1 class="text-lg">{title}</h1>
+    <div class="flex gap-3">
+      <a href={githubLink} class="underline">Github</a>
+      {
+        liveLink && (
+          <a href={liveLink} class="underline">
+            Demo
+          </a>
+        )
+      }
+    </div>
+  </div>
+  <div>
+    <Image src={ArrowLargeImg} alt={"Arrow Image"} class="w-5" />
+  </div>
+</div>
