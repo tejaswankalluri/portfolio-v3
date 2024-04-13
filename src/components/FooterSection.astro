@@ -1,0 +1,65 @@
+---
+import LinkIcon from "../assets/icons/arrow.svg";
+import Image from "astro/components/Image.astro";
+---
+
+<section class="container mx-auto mt-32 mb-10">
+  <div class="flex-col space-y-5 md:space-y-0 md:flex-row md:justify-between">
+    <div class="flex justify-center md:inline-block">
+      <p class="text-lg">
+        Email at <a href="mailto:ping@tejaswan.me" class="underline"
+          >ping@tejaswan.me</a
+        >
+        <span class="inline-block ml-1 -mb-1"
+          ><Image src={LinkIcon} alt="arrow" /></span
+        >
+      </p>
+    </div>
+    <div class="flex flex-col space-y-2 items-center md:items-end">
+      <a href="https://www.instagram.com/tejaswan_techtoe" class="text-lg"
+        >Instagram
+        <span class="inline-block ml-1"
+          ><Image src={LinkIcon} alt="arrow" /></span
+        >
+      </a>
+      <a href="https://www.twitter.com/tejaswan1" class="text-lg"
+        >Twitter
+        <span class="inline-block ml-1"
+          ><Image src={LinkIcon} alt="arrow" /></span
+        >
+      </a>
+      <a href="https://www.linkedin.com/in/tejaswan-kalluri/" class="text-lg"
+        >Linkedin
+        <span class="inline-block ml-1"
+          ><Image src={LinkIcon} alt="arrow" /></span
+        >
+      </a>
+      <a href="https://github.com/tejaswankalluri/" class="text-lg"
+        >GitHub
+        <span class="inline-block ml-1"
+          ><Image src={LinkIcon} alt="arrow" /></span
+        >
+      </a>
+    </div>
+  </div>
+  <div class="flex md:block justify-center">
+    <p
+      class="opacity-40 text-tuatara-800 text-4xl md:text-8xl font-semibold font-lexend tracking-widest mt-5 md:mt-1"
+    >
+      Contact Me
+    </p>
+  </div>
+  <hr class="h-px my-8 bg-tuatara-800 border-0" />
+  <div class="flex justify-center md:justify-end">
+    <p class="text-tuatara-600">
+      Last Updated:
+      {
+        new Date().toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        })
+      }
+    </p>
+  </div>
+</section>
