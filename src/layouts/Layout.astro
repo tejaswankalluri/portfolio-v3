@@ -1,19 +1,58 @@
 ---
 interface Props {
   title: string;
+  description: string;
+  metaImg?: string;
 }
+
 import Navbar from "../components/Navbar.astro";
-const { title } = Astro.props;
-// import "../styles/devicon.min.css";
+const { title, description, metaImg } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta http-equiv="Content-Security-Policy" content="object-src 'self' " />
+
+    <!-- Global Metadata -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+    <meta
+      name="keywords"
+      content="tejaswan, tejaswan portfolio, tejaswan kalluri"
+    />
+    <!--  meta tag    -->
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="tejaswan, tejaswan portfolio, tejaswan kalluri"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content="English" />
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content={title} />
+    <meta itemprop="description" content={description} />
+    <meta itemprop="image" content={metaImg} />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://tejaswan.me" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={metaImg} />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={metaImg} />
+    <link rel="icon" type="image/x-icon" href="/favicon.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
