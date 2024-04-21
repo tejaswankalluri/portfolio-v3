@@ -4,7 +4,7 @@ interface Props {
   description: string;
   metaImg?: string;
 }
-
+import SpeedInsights from "@vercel/speed-insights/astro";
 import Navbar from "../components/Navbar.astro";
 import "devicon/devicon.min.css";
 
@@ -79,6 +79,7 @@ const { title, description, metaImg } = Astro.props;
   <body class="bg-tuatara-950">
     <Navbar />
     <slot />
+    <SpeedInsights />
   </body>
 </html>
 <style is:global>
