@@ -6,6 +6,15 @@ interface Props {
 }
 
 import Navbar from "../components/Navbar.astro";
+import "devicon/devicon.min.css";
+
+// css imports
+import "@fontsource/lexend-zetta/700.css";
+import "@fontsource/montserrat";
+import "@fontsource/montserrat/500.css";
+import "@fontsource/montserrat/600.css";
+import "@fontsource/montserrat/700.css";
+
 const { title, description, metaImg } = Astro.props;
 ---
 
@@ -55,15 +64,15 @@ const { title, description, metaImg } = Astro.props;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
+    <!-- <link
       href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
-    />
-    <link
+    /> -->
+    <!-- <link
       rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
+    /> -->
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
