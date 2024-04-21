@@ -17,14 +17,14 @@ const { title, githubLink, liveLink } = Astro.props;
     <div class="flex gap-3">
       {
         githubLink && (
-          <a href={githubLink} class="underline">
+          <a href={githubLink} class="underline" target="_blank">
             Github
           </a>
         )
       }
       {
         liveLink && (
-          <a href={liveLink} class="underline">
+          <a href={liveLink} class="underline" target="_blank">
             Demo
           </a>
         )
