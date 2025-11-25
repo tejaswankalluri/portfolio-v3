@@ -15,9 +15,64 @@ import HambergerMenuIcon from "../assets/icons/hamberger.svg";
       <li><a href="https://blog.tejaswan.me" target="_blank">Blog</a></li>
     </ul>
     <div class="md:hidden">
-      <a href="#">
+      <button id="menu-toggle" type="button" aria-label="Toggle menu">
         <Image src={HambergerMenuIcon} alt="Menu" />
-      </a>
+      </button>
     </div>
   </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-y-0 right-0 w-64 bg-tuatara-950 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden"
+  >
+    <div class="flex flex-col h-full">
+      <div class="flex justify-end p-4">
+        <button id="menu-close" type="button" aria-label="Close menu" class="text-2xl">
+          &times;
+        </button>
+      </div>
+      <ul class="flex flex-col gap-6 px-8 py-4 font-medium text-lg">
+        <li><a href="#work" class="block hover:text-tuatara-300">Work</a></li>
+        <li><a href="#project" class="block hover:text-tuatara-300">Project</a></li>
+        <li><a href="#contact" class="block hover:text-tuatara-300">Contact</a></li>
+        <li><a href="https://blog.tejaswan.me" target="_blank" class="block hover:text-tuatara-300">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div
+    id="menu-overlay"
+    class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden"
+  ></div>
 </nav>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuClose = document.getElementById('menu-close');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuOverlay = document.getElementById('menu-overlay');
+
+  function openMenu() {
+    mobileMenu?.classList.remove('translate-x-full');
+    menuOverlay?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add('translate-x-full');
+    menuOverlay?.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  menuToggle?.addEventListener('click', openMenu);
+  menuClose?.addEventListener('click', closeMenu);
+  menuOverlay?.addEventListener('click', closeMenu);
+
+  // Close menu when clicking on navigation links
+  const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+  mobileMenuLinks?.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
