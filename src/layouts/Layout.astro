@@ -16,6 +16,7 @@ import "@fontsource/montserrat/600.css";
 import "@fontsource/montserrat/700.css";
 
 const { title, description, metaImg } = Astro.props;
+const absoluteMetaImg = metaImg ? `https://tejaswan.me${metaImg}` : undefined;
 ---
 
 <!doctype html>
@@ -47,20 +48,20 @@ const { title, description, metaImg } = Astro.props;
     <!-- Google / Search Engine Tags -->
     <meta itemprop="name" content={title} />
     <meta itemprop="description" content={description} />
-    <meta itemprop="image" content={metaImg} />
+    {absoluteMetaImg && <meta itemprop="image" content={absoluteMetaImg} />}
 
-    <!-- Facebook Meta Tags -->
+    <!-- Open Graph -->
     <meta property="og:url" content="https://tejaswan.me" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={metaImg} />
+    {absoluteMetaImg && <meta property="og:image" content={absoluteMetaImg} />}
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={metaImg} />
+    {absoluteMetaImg && <meta name="twitter:image" content={absoluteMetaImg} />}
     <link rel="icon" type="image/x-icon" href="/favicon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
