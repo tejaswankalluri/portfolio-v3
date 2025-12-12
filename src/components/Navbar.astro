@@ -6,7 +6,9 @@ import HambergerMenuIcon from "../assets/icons/hamberger.svg";
 <nav class="container mx-auto py-8">
   <div class="flex justify-between items-center">
     <a href="#"
-      ><h1 class="text-xl md:text-2xl font-bold font-lexend">Tejaswan</h1></a
+      ><h1 class="text-xl md:text-2xl font-bold tracking-widest">
+        Tejaswan
+      </h1></a
     >
     <ul class="hidden md:flex gap-8 font-medium text-lg">
       <li><a href="#work">Work</a></li>
@@ -28,15 +30,30 @@ import HambergerMenuIcon from "../assets/icons/hamberger.svg";
   >
     <div class="flex flex-col h-full">
       <div class="flex justify-end p-4">
-        <button id="menu-close" type="button" aria-label="Close menu" class="text-2xl">
+        <button
+          id="menu-close"
+          type="button"
+          aria-label="Close menu"
+          class="text-2xl"
+        >
           &times;
         </button>
       </div>
       <ul class="flex flex-col gap-6 px-8 py-4 font-medium text-lg">
         <li><a href="#work" class="block hover:text-tuatara-300">Work</a></li>
-        <li><a href="#project" class="block hover:text-tuatara-300">Project</a></li>
-        <li><a href="#contact" class="block hover:text-tuatara-300">Contact</a></li>
-        <li><a href="https://blog.tejaswan.me" target="_blank" class="block hover:text-tuatara-300">Blog</a></li>
+        <li>
+          <a href="#project" class="block hover:text-tuatara-300">Project</a>
+        </li>
+        <li>
+          <a href="#contact" class="block hover:text-tuatara-300">Contact</a>
+        </li>
+        <li>
+          <a
+            href="https://blog.tejaswan.me"
+            target="_blank"
+            class="block hover:text-tuatara-300">Blog</a
+          >
+        </li>
       </ul>
     </div>
   </div>
@@ -45,34 +62,35 @@ import HambergerMenuIcon from "../assets/icons/hamberger.svg";
   <div
     id="menu-overlay"
     class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden"
-  ></div>
+  >
+  </div>
 </nav>
 
 <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const menuClose = document.getElementById('menu-close');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuOverlay = document.getElementById('menu-overlay');
+  const menuToggle = document.getElementById("menu-toggle");
+  const menuClose = document.getElementById("menu-close");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuOverlay = document.getElementById("menu-overlay");
 
   function openMenu() {
-    mobileMenu?.classList.remove('translate-x-full');
-    menuOverlay?.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
+    mobileMenu?.classList.remove("translate-x-full");
+    menuOverlay?.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
   }
 
   function closeMenu() {
-    mobileMenu?.classList.add('translate-x-full');
-    menuOverlay?.classList.add('hidden');
-    document.body.style.overflow = '';
+    mobileMenu?.classList.add("translate-x-full");
+    menuOverlay?.classList.add("hidden");
+    document.body.style.overflow = "";
   }
 
-  menuToggle?.addEventListener('click', openMenu);
-  menuClose?.addEventListener('click', closeMenu);
-  menuOverlay?.addEventListener('click', closeMenu);
+  menuToggle?.addEventListener("click", openMenu);
+  menuClose?.addEventListener("click", closeMenu);
+  menuOverlay?.addEventListener("click", closeMenu);
 
   // Close menu when clicking on navigation links
-  const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
-  mobileMenuLinks?.forEach(link => {
-    link.addEventListener('click', closeMenu);
+  const mobileMenuLinks = mobileMenu?.querySelectorAll("a");
+  mobileMenuLinks?.forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
 </script>
