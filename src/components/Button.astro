@@ -8,11 +8,71 @@ interface Props {
 const { title, href } = Astro.props;
 ---
 
-<a href={href} target="_blank">
-  <button
-    class="bg-tuatara-900 flex gap-2 py-2 px-4 items-center justify-center rounded-lg border-tuatara-400 border"
-  >
-    <p class="text-sm md:text-base">{title}</p>
-    <Image src={arrowImg} alt={"arrow img"} width={12} />
-  </button>
+<a
+  href={href}
+  target="_blank"
+  class="glow-btn inline-flex w-fit bg-tuatara-900 gap-2 py-2 px-4 items-center justify-center rounded-lg border-tuatara-400 border"
+>
+  <p class="text-sm md:text-base">{title}</p>
+  <Image src={arrowImg} alt={"arrow img"} width={12} />
 </a>
+
+<style>
+  .glow-btn {
+    position: relative;
+    overflow: hidden;
+    border-color: rgba(148, 148, 148, 0.5);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease,
+      transform 0.2s ease;
+  }
+
+  .glow-btn::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: conic-gradient(
+      from 180deg,
+      rgba(120, 246, 213, 0) 0deg,
+      rgba(120, 246, 213, 0.8) 90deg,
+      rgba(120, 246, 213, 0) 180deg,
+      rgba(120, 246, 213, 0.6) 270deg,
+      rgba(120, 246, 213, 0) 360deg
+    );
+    opacity: 0;
+    filter: blur(6px);
+    transition: opacity 0.3s ease;
+    animation: border-spin 2.8s linear infinite;
+    z-index: 0;
+  }
+
+  .glow-btn::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: inherit;
+    border-radius: inherit;
+    z-index: 1;
+  }
+
+  .glow-btn > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .glow-btn:hover {
+    border-color: rgba(120, 246, 213, 0.8);
+    box-shadow: 0 0 18px rgba(120, 246, 213, 0.45),
+      0 0 40px rgba(120, 246, 213, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .glow-btn:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes border-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

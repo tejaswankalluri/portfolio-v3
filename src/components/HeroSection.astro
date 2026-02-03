@@ -12,7 +12,9 @@ import Button from "./Button.astro";
       <div
         class="flex flex-col gap-3 font-medium text-center md:text-left md:mt-10"
       >
-        <h1 class="text-3xl md:text-5xl">Hi👋</h1>
+        <h1 class="text-3xl md:text-5xl">
+          Hi<span class="wave" aria-hidden="true">👋</span>
+        </h1>
         <h1 class="text-3xl md:text-5xl md:mt-3">
           I'm <span class="font-normal underlineText font-libre tracking-widest"
             >Tejaswan</span
@@ -20,7 +22,7 @@ import Button from "./Button.astro";
         </h1>
       </div>
       <p class="text-sm text-center md:text-left md:text-base">
-        I am a software engineer with over 2 year of experience in developing
+        I am a software engineer with over 3 years of experience in developing
         web and mobile applications. I have a passion for creating innovative
         solutions that solve real-world problems and enhance user experience.
       </p>
@@ -32,11 +34,45 @@ import Button from "./Button.astro";
       </div>
     </div>
     <div>
-      <Image src={HeroImg} alt="Hero Image" class="rounded-lg w-56 md:w-96" />
+      <Image
+        src={HeroImg}
+        alt="Hero Image"
+        class="rounded-lg w-56 md:w-96 transition-transform duration-200 ease-out hover:scale-105"
+      />
     </div>
   </div>
 </section>
 <style>
+  .wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+  }
+
+  .wave:hover {
+    animation: wave 0.8s ease-in-out 1;
+  }
+
+  @keyframes wave {
+    0% {
+      transform: rotate(0deg);
+    }
+    20% {
+      transform: rotate(18deg);
+    }
+    40% {
+      transform: rotate(-10deg);
+    }
+    60% {
+      transform: rotate(14deg);
+    }
+    80% {
+      transform: rotate(-6deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
   .underlineText {
     display: inline-block;
     background-image: url("/underline.svg");
