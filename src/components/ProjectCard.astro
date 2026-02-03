@@ -3,35 +3,49 @@ import { Image } from "astro:assets";
 import ArrowLargeImg from "../assets/icons/arrowLarge.svg";
 interface Props {
   title: string;
+  description: string;
   githubLink?: string;
   liveLink?: string;
 }
-const { title, githubLink, liveLink } = Astro.props;
+const { title, description, githubLink, liveLink } = Astro.props;
 ---
 
 <div
-  class="bg-tuatara-900 rounded-md px-7 py-5 flex items-center border border-tuatara-400 justify-between"
+  class="bg-tuatara-900 rounded-md px-7 py-5 flex items-start border border-tuatara-400 justify-between gap-4"
 >
-  <div class="flex flex-col gap-5">
-    <h1 class="text-lg">{title}</h1>
+  <div class="flex flex-col gap-4">
+    <h3 class="text-lg">{title}</h3>
+    <p class="text-sm text-tuatara-300 leading-6 max-w-[28rem]">
+      {description}
+    </p>
     <div class="flex gap-3">
       {
         githubLink && (
-          <a href={githubLink} class="underline" target="_blank">
+          <a
+            href={githubLink}
+            class="underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Github
           </a>
         )
       }
       {
         liveLink && (
-          <a href={liveLink} class="underline" target="_blank">
+          <a
+            href={liveLink}
+            class="underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Demo
           </a>
         )
       }
     </div>
   </div>
-  <div>
-    <Image src={ArrowLargeImg} alt={"Arrow Image"} class="w-5" />
+  <div class="flex-shrink-0 self-center">
+    <Image src={ArrowLargeImg} alt="Open project link" class="w-4 h-4" />
   </div>
 </div>

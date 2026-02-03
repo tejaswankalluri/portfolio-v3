@@ -2,7 +2,11 @@
 interface Props {
   title: string;
   description: string;
-  metaImg?: string;
+  metaImg?: {
+    src: string;
+    width: number;
+    height: number;
+  };
 }
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Navbar from "../components/Navbar.astro";
@@ -18,7 +22,29 @@ import "@fontsource/roboto-mono/600.css";
 import "@fontsource/roboto-mono/700.css";
 
 const { title, description, metaImg } = Astro.props;
-const absoluteMetaImg = metaImg ? `https://tejaswan.me${metaImg}` : undefined;
+const siteUrl = Astro.site ?? new URL("https://tejaswan.me");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
+const absoluteMetaImg = metaImg ? new URL(metaImg.src, siteUrl).toString() : undefined;
+const metaImgAlt = `${title} social preview`;
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Tejaswan Kalluri",
+  url: siteUrl.toString(),
+  jobTitle: "Software Engineer",
+  sameAs: [
+    "https://www.linkedin.com/in/tejaswan-kalluri/",
+    "https://github.com/tejaswankalluri/",
+    "https://www.twitter.com/techtoe_",
+    "https://www.instagram.com/tejaswan_techtoe",
+  ],
+};
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: title,
+  url: siteUrl.toString(),
+};
 ---
 
 <!doctype html>
@@ -29,23 +55,21 @@ const absoluteMetaImg = metaImg ? `https://tejaswan.me${metaImg}` : undefined;
     <meta http-equiv="Content-Security-Policy" content="object-src 'self' " />
 
     <!-- Global Metadata -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
-    <meta
-      name="keywords"
-      content="tejaswan, tejaswan portfolio, tejaswan kalluri"
-    />
-    <!--  meta tag    -->
-    <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content="tejaswan, tejaswan portfolio, tejaswan kalluri, full stack developer, full stack engineer, software engineer, backend developer, react developer, nodejs developer, fastapi developer, aws developer, react native developer, javascript developer, typescript developer, python developer, golang developer, cloud engineer, devops engineer, microservices developer, web developer, mobile app developer, react projects, nodejs projects, full stack projects, portfolio developer, india software engineer"
+      content="Tejaswan, Tejaswan Kalluri, tejaswan, tejaswan portfolio, tejaswan kalluri, full stack developer, full stack engineer, software engineer, backend developer, react developer, nodejs developer, fastapi developer, aws developer, react native developer, javascript developer, typescript developer, python developer, golang developer, cloud engineer, devops engineer, microservices developer, web developer, mobile app developer, react projects, nodejs projects, full stack projects, portfolio developer, india software engineer"
     />
     <meta name="robots" content="index, follow" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="language" content="English" />
+    <meta name="theme-color" content="#191919" />
+    <meta name="author" content="Tejaswan Kalluri" />
+    <meta name="copyright" content="Tejaswan Kalluri" />
+    <link rel="canonical" href={canonicalUrl.toString()} />
+    <link rel="alternate" href={canonicalUrl.toString()} hreflang="en" />
+    <link rel="alternate" href={canonicalUrl.toString()} hreflang="x-default" />
 
     <!-- Google / Search Engine Tags -->
     <meta itemprop="name" content={title} />
@@ -53,22 +77,39 @@ const absoluteMetaImg = metaImg ? `https://tejaswan.me${metaImg}` : undefined;
     {absoluteMetaImg && <meta itemprop="image" content={absoluteMetaImg} />}
 
     <!-- Open Graph -->
-    <meta property="og:url" content="https://tejaswan.me" />
+    <meta property="og:url" content={canonicalUrl.toString()} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:locale" content="en_US" />
     {absoluteMetaImg && <meta property="og:image" content={absoluteMetaImg} />}
+    {absoluteMetaImg && <meta property="og:image:alt" content={metaImgAlt} />}
+    {metaImg && <meta property="og:image:width" content={String(metaImg.width)} />}
+    {metaImg && <meta property="og:image:height" content={String(metaImg.height)} />}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@techtoe_" />
+    <meta name="twitter:creator" content="@techtoe_" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {absoluteMetaImg && <meta name="twitter:image" content={absoluteMetaImg} />}
+    {absoluteMetaImg && <meta name="twitter:image:alt" content={metaImgAlt} />}
     <link rel="icon" type="image/x-icon" href="/favicon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta name="generator" content={Astro.generator} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(personJsonLd)}
+      is:inline
+    ></script>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(websiteJsonLd)}
+      is:inline
+    ></script>
     <title>{title}</title>
   </head>
   <body class="bg-tuatara-950">
