@@ -18,23 +18,141 @@ import Image from "astro/components/Image.astro";
           name="access_key"
           value="34e24071-0ea3-4197-8926-603bf1b7e860"
         />
-        <input
-          type="email"
-          aria-label="Your email address"
-          class="bg-tuatara-900 border-tuatara-400 border-2 rounded-lg px-2 py-2 h-14 outline-none placeholder-tuatara-100 flex-shrink-0"
-          placeholder="Email"
-          name="email"
-        />
-        <textarea
-          aria-label="Your message"
-          class="bg-tuatara-900 border-tuatara-400 border-2 rounded-lg px-2 py-4 outline-none placeholder-tuatara-100 h-14 focus:h-32 transition-all duration-300 resize-none flex-shrink-0"
-          placeholder="Message"
-          name="message"></textarea>
+        <div class="flex flex-col gap-1 flex-shrink-0">
+          <input
+            id="contact-email"
+            type="email"
+            aria-label="Your email address"
+            aria-describedby="email-error"
+            class="bg-tuatara-900 border-tuatara-400 border-2 rounded-lg px-2 py-2 h-14 outline-none placeholder-tuatara-100"
+            placeholder="Email"
+            name="email"
+            required
+          />
+          <span
+            id="email-error"
+            class="text-red-400 text-xs hidden"
+            aria-live="polite"></span>
+        </div>
+        <div class="flex flex-col gap-1 flex-shrink-0">
+          <textarea
+            id="contact-message"
+            aria-label="Your message"
+            aria-describedby="message-error"
+            class="bg-tuatara-900 border-tuatara-400 border-2 rounded-lg px-2 py-4 outline-none placeholder-tuatara-100 h-14 focus:h-32 transition-all duration-300 resize-none"
+            placeholder="Message"
+            name="message"
+            required
+            minlength="10"></textarea>
+          <span
+            id="message-error"
+            class="text-red-400 text-xs hidden"
+            aria-live="polite"></span>
+        </div>
         <button
+          id="contact-submit"
+          type="submit"
           class="bg-tuatara-900 px-4 py-2 border-2 border-tuatara-400 rounded-lg hover:bg-tuatara-800 flex-shrink-0 h-14"
           >Send</button
         >
       </form>
+
+      <script>
+        const form = document.querySelector<HTMLFormElement>(
+          'form[action="https://api.web3forms.com/submit"]',
+        );
+        const emailInput = document.getElementById(
+          "contact-email",
+        ) as HTMLInputElement;
+        const messageInput = document.getElementById(
+          "contact-message",
+        ) as HTMLTextAreaElement;
+        const emailError = document.getElementById(
+          "email-error",
+        ) as HTMLSpanElement;
+        const messageError = document.getElementById(
+          "message-error",
+        ) as HTMLSpanElement;
+
+        const INVALID_CLASS = "border-red-400";
+        const VALID_CLASS = "border-tuatara-400";
+
+        function showError(
+          input: HTMLElement,
+          errorEl: HTMLSpanElement,
+          msg: string,
+        ) {
+          input.classList.remove(VALID_CLASS);
+          input.classList.add(INVALID_CLASS);
+          errorEl.textContent = msg;
+          errorEl.classList.remove("hidden");
+        }
+
+        function clearError(input: HTMLElement, errorEl: HTMLSpanElement) {
+          input.classList.remove(INVALID_CLASS);
+          input.classList.add(VALID_CLASS);
+          errorEl.textContent = "";
+          errorEl.classList.add("hidden");
+        }
+
+        function validateEmail(): boolean {
+          const value = emailInput.value.trim();
+          if (!value) {
+            showError(emailInput, emailError, "Email is required.");
+            return false;
+          }
+          if (emailInput.validity.typeMismatch) {
+            showError(
+              emailInput,
+              emailError,
+              "Please enter a valid email address.",
+            );
+            return false;
+          }
+          clearError(emailInput, emailError);
+          return true;
+        }
+
+        function validateMessage(): boolean {
+          const value = messageInput.value.trim();
+          if (!value) {
+            showError(messageInput, messageError, "Message is required.");
+            return false;
+          }
+          if (value.length < 10) {
+            showError(
+              messageInput,
+              messageError,
+              "Message must be at least 10 characters.",
+            );
+            return false;
+          }
+          clearError(messageInput, messageError);
+          return true;
+        }
+
+        // Live validation on blur
+        emailInput?.addEventListener("blur", validateEmail);
+        messageInput?.addEventListener("blur", validateMessage);
+
+        // Clear errors on input
+        emailInput?.addEventListener("input", () => {
+          if (!emailError.classList.contains("hidden")) validateEmail();
+        });
+        messageInput?.addEventListener("input", () => {
+          if (!messageError.classList.contains("hidden")) validateMessage();
+        });
+
+        form?.addEventListener("submit", (e) => {
+          const emailOk = validateEmail();
+          const messageOk = validateMessage();
+          if (!emailOk || !messageOk) {
+            e.preventDefault();
+            if (!emailOk) emailInput.focus();
+            else messageInput.focus();
+          }
+        });
+      </script>
       <p class="text-lg">
         Or Email at <a
           href="mailto:ping@tejaswan.me"
