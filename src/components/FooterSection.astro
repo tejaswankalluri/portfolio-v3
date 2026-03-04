@@ -18,13 +18,13 @@ import Image from "astro/components/Image.astro";
           name="access_key"
           value="34e24071-0ea3-4197-8926-603bf1b7e860"
         />
-        <div class="flex flex-col gap-1 flex-shrink-0">
+        <div class="flex flex-col gap-1 shrink-0">
           <input
             id="contact-email"
             type="email"
             aria-label="Your email address"
             aria-describedby="email-error"
-            class="bg-tuatara-900 border-tuatara-400 border-2 rounded-lg px-2 py-2 h-14 outline-none placeholder-tuatara-100"
+            class="bg-tuatara-900 border-tuatara-400 border-2 rounded-lg px-2 py-2 h-14 outline-hidden placeholder-tuatara-100"
             placeholder="Email"
             name="email"
             required
@@ -34,12 +34,12 @@ import Image from "astro/components/Image.astro";
             class="text-red-400 text-xs hidden"
             aria-live="polite"></span>
         </div>
-        <div class="flex flex-col gap-1 flex-shrink-0">
+        <div class="flex flex-col gap-1 shrink-0">
           <textarea
             id="contact-message"
             aria-label="Your message"
             aria-describedby="message-error"
-            class="bg-tuatara-900 border-tuatara-400 border-2 rounded-lg px-2 py-4 outline-none placeholder-tuatara-100 h-14 focus:h-32 transition-all duration-300 resize-none"
+            class="bg-tuatara-900 border-tuatara-400 border-2 rounded-lg px-2 py-4 outline-hidden placeholder-tuatara-100 h-14 focus:h-32 transition-all duration-300 resize-none"
             placeholder="Message"
             name="message"
             required
@@ -52,7 +52,7 @@ import Image from "astro/components/Image.astro";
         <button
           id="contact-submit"
           type="submit"
-          class="bg-tuatara-900 px-4 py-2 border-2 border-tuatara-400 rounded-lg hover:bg-tuatara-800 flex-shrink-0 h-14"
+          class="bg-tuatara-900 px-4 py-2 border-2 border-tuatara-400 rounded-lg hover:bg-tuatara-800 shrink-0 h-14"
           >Send</button
         >
       </form>

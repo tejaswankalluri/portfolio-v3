@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-tuatara-50:  #f6f6f6;
+  --color-tuatara-100: #e7e7e7;
+  --color-tuatara-200: #d1d1d1;
+  --color-tuatara-300: #b0b0b0;
+  --color-tuatara-400: #888888;
+  --color-tuatara-500: #6d6d6d;
+  --color-tuatara-600: #5d5d5d;
+  --color-tuatara-700: #4f4f4f;
+  --color-tuatara-800: #454545;
+  --color-tuatara-900: #3d3d3d;
+  --color-tuatara-950: #191919;
+}
+
+/* Simplified container: 1140px max, centered, 1rem padding */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  max-width: 1140px;
+}
